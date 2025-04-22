@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> party corner </title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="./index.js"></script>
+</head>
+<style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-image:url(./images/drake\ for\ all\ your\ dogs\ computer\ wallpaper.jpg);
+      color:white;
+      text-align: center;
+    }
+    header {
+      padding: 50px 20px;
+      background-image: url(./images/teddy.jpg);
+      color: white;
+    }
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+      color: beige;
+    }
+    .content {
+      padding: 40px 20px;
+    }
+    .content h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: bisque;
+    }
+    .content p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+    .rsvp-form {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .rsvp-form input, .rsvp-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 2px solid black;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    .rsvp-form button {
+      background-color:bisque;
+      color: bisque;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .rsvp-form button:hover {
+      background-image: url(./images/black\ wallpaper.jpg);
+    }
+    footer {
+      background-color: whitesmoke;
+      color:black;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    /* Animation */
+    .balloons {
+      position: fixed;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: floatUp 10s infinite;
+      z-index: -1;
+    }
+    @keyframes floatUp {
+      0% { top: 100%; opacity: 0; }
+      50% { opacity: 1; }
+      100% { top: -200px; opacity: 0; }
+    }
+  </style>
+<body>
+    <nav>
+        <a href=""></a>
+    </nav>
+    <header>
+        <h1> You're Invited!</h1>
+        <p>Join us for a fun-filled birthday celebration</p>
+      </header>
+    
+      <div class="content">
+        <h2> Birthday Bash for DOM,ALEX!</h2>
+        <p>Come celebrate Alex's 10th birthday with games, cake, and lots of fun!</p>
+        <p><strong>Date:</strong> Saturday, May 3, 2025</p>
+        <p><strong>Time:</strong> 2.00 PM - LATE NIGHT</p>
+        <p><strong>Location:</strong> Kitengela, Nairobi</p>
+    
+        <h3>RSVP Below:</h3>
+        <form class="rsvp-form" id="rsvpForm">
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" name="name" required />
+    
+          <label for="guests">Number of Guests:</label>
+          <input type="number" id="guests" name="guests" min="1" required />
+    
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+    
+          <button type="submit">Submit RSVP</button>
+        </form>
+      </div>
+    
+      <footer>
+        <p>We can't wait to celebrate with you! 
+            yall are invited to party and game with us 🎉</p>
+      </footer>
+    
+      <!-- Balloon Animation -->
+      <img src="./images/belair.jpg" alt="Balloons" class="balloons" width="400" />
+    <form id="mpesaForm">
+        <label for="phone">Phone Number (send to 0711255905):</label>
+        <input type="text" id="phone" name="phone" required />
+      
+        <label for="amount">Amount (KES):</label>
+        <input type="number" id="amount" name="amount" required />
+      
+        <button type="submit">Send Money</button>
+      </form>
+      
+      <script>
+        document.getElementById('mpesaForm').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const phone = document.getElementById('phone').value;
+          const amount = document.getElementById('amount').value;
+      
+          const response = await fetch('/api/stkpush', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phone, amount })
+          });
+      
+          const result = await response.json();
+          alert(result.message);
+        });
+      </script>
+    
+</body>
+</html>
